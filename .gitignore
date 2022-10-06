@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+
+# output bin of vercel package
+bin
+# used for relases
+bin-dist
+
