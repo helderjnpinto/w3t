@@ -3,8 +3,18 @@
   "version": "0.0.1",
   "description": "Web3 terminal utilities for blockchains",
   "main": "index.js",
+  "bin": {
+    "w3t": "./build/cli.js"
+  },
   "scripts": {
+    "compile": "tsc -w",
+    "package:bin": "pkg .",
+    "package:bin:macos": "pkg . --targets node14-macos-x64",
+    "dist:linux": "tar -cvzf ./bin-dist/w3t-linux.tar.gz ./bin/w3t-linux; sha256sum ./bin-dist/w3t-linux.tar.gz",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "repository": {
     "type": "git",
@@ -24,5 +34,17 @@
     "decoder"
   ],
   "author": "@helderjnpinto",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.8.2",
+    "@types/yargs": "^17.0.13",
+    "pkg": "^5.8.0",
+    "typescript": "^4.8.4",
+    "web3": "^1.8.0",
+    "yargs": "^17.6.0"
+  },
+  "pkg": {
+    "scripts": "build/**/*.js",
+    "outputPath": "bin"
+  }
 }
