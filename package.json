@@ -10,7 +10,7 @@
     "compile": "tsc -w",
     "package:bin": "pkg .",
     "package:bin:macos": "pkg . --targets node14-macos-x64",
-    "dist:linux": "tar -cvzf ./bin-dist/w3t-linux.tar.gz ./bin/w3t-linux; sha256sum ./bin-dist/w3t-linux.tar.gz",
+    "dist:linux": "npm run pkg; dir=bin; cd $dir; mv w3t-linux w3t; tar -cvzf w3t-linux.tar.gz w3t; sha256sum ./w3t-linux.tar.gz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
