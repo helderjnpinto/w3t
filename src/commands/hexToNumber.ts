@@ -1,13 +1,12 @@
 import type { Arguments, CommandBuilder } from 'yargs';
-import { sha3 } from 'web3-utils';
+import { hexToNumberString } from 'web3-utils';
 
 type Options = {
   string: string;
-  upper: boolean | undefined;
 };
 
-export const command: string = 'sha3 <string>';
-export const desc: string = 'Web3: Will calculate the sha3 of the input.';
+export const command: string = 'hexToNumber <string>';
+export const desc: string = 'Web3: Returns the number representation of a given HEX value as a string.';
 
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs
@@ -17,8 +16,8 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
     .positional('string', { type: 'string', demandOption: true });
 
 export const handler = (argv: Arguments<Options>): void => {
-  const { string, upper } = argv;
-  const hash = (sha3(string) || '') + "\n";
-  process.stdout.write(upper ? hash.toUpperCase() : hash);
+  const { string } = argv;
+  const result = hexToNumberString(string) || '';
+  process.stdout.write(result + "\n");
   process.exit(0);
 };
