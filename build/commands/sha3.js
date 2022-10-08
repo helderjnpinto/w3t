@@ -12,7 +12,7 @@ const builder = (yargs) => yargs
 exports.builder = builder;
 const handler = (argv) => {
     const { string, upper } = argv;
-    const hash = (0, web3_utils_1.sha3)(string) || '';
+    const hash = ((0, web3_utils_1.sha3)(string) || '') + "\n";
     process.stdout.write(upper ? hash.toUpperCase() : hash);
     process.exit(0);
 };
