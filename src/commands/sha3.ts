@@ -18,7 +18,7 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
 
 export const handler = (argv: Arguments<Options>): void => {
   const { string, upper } = argv;
-  const hash = sha3(string) || '';
+  const hash = (sha3(string) || '') + "\n";
   process.stdout.write(upper ? hash.toUpperCase() : hash);
   process.exit(0);
 };
