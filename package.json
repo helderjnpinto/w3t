@@ -10,7 +10,10 @@
     "compile": "tsc -w",
     "package:bin": "pkg .",
     "package:bin:macos": "pkg . --targets node14-macos-x64",
-    "dist:linux": "npm run pkg; dir=bin; cd $dir; mv w3t-linux w3t; tar -cvzf w3t-linux.tar.gz w3t; sha256sum ./w3t-linux.tar.gz",
+    "dist": "npm run package:bin; npm run dist:linux; npm run dist:macos; npm run dist:win;",
+    "dist:linux": "dir=bin; cd $dir; mv w3t-linux w3t; tar -cvzf w3t-linux.tar.gz w3t; rm w3t; sha256sum ./w3t-linux.tar.gz;",
+    "dist:macos": "dir=bin; cd $dir; mv w3t-macos w3t; tar -cvzf w3t-macos.tar.gz w3t; rm w3t; sha256sum ./w3t-macos.tar.gz",
+    "dist:win": "dir=bin; cd $dir; mv w3t-win.exe w3t; tar -cvzf w3t-win.tar.gz w3t; rm w3t; sha256sum ./w3t-win.tar.gz",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
