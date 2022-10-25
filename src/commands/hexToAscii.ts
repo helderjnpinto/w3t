@@ -1,13 +1,14 @@
 import type { Arguments, CommandBuilder } from 'yargs';
-import { numberToHex } from 'web3-utils';
+import { hexToAscii } from 'web3-utils';
 import { ExecUtils, UtilsLogs } from '../utils';
 
 type Options = {
   string: string;
+  upper: boolean | undefined;
 };
 
-export const command: string = 'numberToHex <string>';
-export const desc: string = 'Web3: Returns the HEX representation of a given number value.';
+export const command: string = 'hexToAscii <string>';
+export const desc: string = 'Web3: Returns the ASCII string representation of a given HEX value.';
 
 export const builder: CommandBuilder<Options, Options> = (yargs) =>
   yargs
@@ -17,10 +18,10 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
     .positional('string', { type: 'string', demandOption: true });
 
 export const handler = (argv: Arguments<Options>): void => {
-  const { string } = argv;
-
-  const returnData = ExecUtils.executable(() => numberToHex(string));
-  UtilsLogs.print(returnData);
+  const { string, upper } = argv;
+  
+  const returnData = ExecUtils.executable(() => hexToAscii(string));
+  UtilsLogs.print(upper ? returnData.toUpperCase() : returnData);
 
   process.exit(0);
 };
