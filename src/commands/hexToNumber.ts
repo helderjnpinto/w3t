@@ -1,5 +1,6 @@
 import type { Arguments, CommandBuilder } from 'yargs';
 import { hexToNumberString } from 'web3-utils';
+import { ExecUtils, UtilsLogs } from '../utils';
 
 type Options = {
   string: string;
@@ -17,7 +18,9 @@ export const builder: CommandBuilder<Options, Options> = (yargs) =>
 
 export const handler = (argv: Arguments<Options>): void => {
   const { string } = argv;
-  const result = hexToNumberString(string) || '';
-  process.stdout.write(result + "\n");
+  
+  const returnData = ExecUtils.executable(() => hexToNumberString(string));
+  UtilsLogs.print(returnData);
+
   process.exit(0);
 };
