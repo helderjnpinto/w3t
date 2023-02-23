@@ -1,6 +1,6 @@
 # w3t
 
-Web 3 terminal cli for blockchain interaction and utilities
+Web 3 cli for blockchain interaction and utilities
 
 
 # Gen bin
